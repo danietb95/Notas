@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Notas</string>
+    <string name="archivar">Archivar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="favoritos">Favoritos</string>
+    <string name="recordatorios">Recordatorios</string>
 </resources>

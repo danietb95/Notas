@@ -5,18 +5,19 @@
     <item
         android:id="@+id/item_id"
         android:icon="@android:drawable/checkbox_off_background"
-        android:title="Archivar" />
+        android:title="@string/archivar"
+        android:visible="true" />
     <item
         android:id="@+id/item_archivar"
         android:icon="@android:drawable/ic_menu_delete"
-        android:title="Eliminar" />
+        android:title="@string/eliminar" />
     <item
         android:id="@+id/item_favoritos"
         android:icon="@android:drawable/btn_star_big_on"
-        android:title="Favoritos" />
+        android:title="@string/favoritos" />
     <item
         android:id="@+id/item_recordatorios"
         android:icon="@android:drawable/ic_lock_idle_alarm"
-        android:title="Recordatorios" />
+        android:title="@string/recordatorios" />
 
 </menu>
