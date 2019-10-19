@@ -7,7 +7,7 @@
     tools:context=".CrearNota">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/titulo"
         android:layout_width="334dp"
         android:layout_height="37dp"
         android:layout_marginStart="38dp"
@@ -35,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/descripcion"
         android:layout_width="333dp"
         android:layout_height="43dp"
         android:layout_marginStart="39dp"
@@ -46,7 +46,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/titulo" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
