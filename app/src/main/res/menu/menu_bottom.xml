@@ -3,11 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@id/notesFragment"
-        android:icon="@drawable/ic_note_black_24dp"
-        android:title="Notas" />
+        android:id="@+id/item_id"
+        android:icon="@android:drawable/checkbox_off_background"
+        android:title="Archivar" />
     <item
-        android:id="@id/remindersFragment"
-        android:icon="@drawable/ic_access_alarm_black_24dp"
+        android:id="@+id/item_archivar"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="Eliminar" />
+    <item
+        android:id="@+id/item_favoritos"
+        android:icon="@android:drawable/btn_star_big_on"
+        android:title="Favoritos" />
+    <item
+        android:id="@+id/item_recordatorios"
+        android:icon="@android:drawable/ic_lock_idle_alarm"
         android:title="Recordatorios" />
+
 </menu>
