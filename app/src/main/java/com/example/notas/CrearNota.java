@@ -16,14 +16,13 @@ public class CrearNota extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_nota);
         getContext();
-        TextView textViewTitle = (TextView)findViewById(R.id.titulo);
-        TextView textViewDescription = (TextView)findViewById(R.id.descripcion);
+        TextView textViewTitle = (TextView) findViewById(R.id.titulo);
+        TextView textViewDescription = (TextView) findViewById(R.id.descripcion);
         textViewTitle.setText(titulo);
         textViewDescription.setText(descripcion);
 

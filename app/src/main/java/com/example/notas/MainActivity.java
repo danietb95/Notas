@@ -17,16 +17,25 @@ public class MainActivity extends AppCompatActivity {
     Nota nota2 = new Nota("Nota 2", "descripcion 2");
     Nota nota3 = new Nota("Nota 3", "descripcion 3");
 
+    private void getContext() {
+        if (getIntent().hasExtra("estado")) {
+            String estado = getIntent().getStringExtra("estado");
+            //realizar consulta a base de datos con el estado seleccionado
+            notas.add(nota);
+            notas.add(nota2);
+        } else {
+            notas.add(nota3);
+            //retornar todas las notas menos las archivadas
+        }
+    }
+
     public void nuevaNota(View view){
         startActivity(new Intent(getApplicationContext(), CrearNota.class));
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        notas.add(nota);
-        notas.add(nota2);
-        notas.add(nota3);
-
+        getContext();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView rvContacts = (RecyclerView) findViewById(R.id.rvNotes);
