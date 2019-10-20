@@ -27,8 +27,12 @@ public class CrearNota extends AppCompatActivity {
     public void eliminarNota(MenuItem item) {
         notaSingleton.deleteNote(nota);
         Intent intent = new Intent(CrearNota.this, MainActivity.class);
-        intent.putExtra("estado", "TodasSinArchivadas");
+        intent.putExtra("estado", "Favoritas");
         startActivity(intent);
+    }
+
+    public void agregarAFavoritos(MenuItem item) {
+        nota.setTipoNota("Favoritas");
     }
 
     @Override
@@ -52,20 +56,15 @@ public class CrearNota extends AppCompatActivity {
                 nota.setDescripcion(textViewDescription.getText().toString());
                 nota.setRecordatorio(testViewReminder.isActivated());
                 if (esNueva) {
-                    nota.setTipo_nota("normal");
                     notaSingleton.setNote(nota);
                 } else {
                     notaSingleton.updateNote(nota);
                 }
                 Intent intent = new Intent(CrearNota.this, MainActivity.class);
-                intent.putExtra("estado", "Favoritas");
+                intent.putExtra("estado", "TodasSinArchivadas");
                 startActivity(intent);
             }
         });
 
-    }
-
-    public void agregarAFavoritos(MenuItem item) {
-        nota.setTipo_nota("Favoritas");
     }
 }

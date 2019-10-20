@@ -32,6 +32,7 @@ public class Nota implements Serializable {
         this.descripcion = "";
         this.recordatorio = false;
         this.id = UUID.randomUUID().toString();
+        this.tipo_nota = "normal";
     }
 
     public Nota(String titulo, String descripcion, boolean recordatorio, String tipo_nota) {
@@ -79,7 +80,7 @@ public class Nota implements Serializable {
         this.id = id;
     }
 
-    public void setTipo_nota(String tipo_nota) {
+    public void setTipoNota(String tipo_nota) {
         this.tipo_nota = tipo_nota;
     }
 

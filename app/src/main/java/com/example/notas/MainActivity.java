@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
                 case "Archivada":
                     notas = (ArrayList) notaSingleton.getAllTypeOfNote("Archivadas");
                     break;
-                case "Favorita":
+                case "Favoritas":
                     notas = (ArrayList) notaSingleton.getAllTypeOfNote("Favoritas");
                     break;
                 case "TodasSinArchivadas":
