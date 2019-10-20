@@ -24,6 +24,13 @@ public class CrearNota extends AppCompatActivity {
         }
     }
 
+    public void eliminarNota(MenuItem item) {
+        notaSingleton.deleteNote(nota);
+        Intent intent = new Intent(CrearNota.this, MainActivity.class);
+        intent.putExtra("estado", "TodasSinArchivadas");
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
