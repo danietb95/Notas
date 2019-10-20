@@ -5,11 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
-import android.content.ClipData;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -54,8 +51,8 @@ public class CrearNota extends AppCompatActivity {
 
     public void eliminarNota(MenuItem item) {
         notaSingleton.deleteNote(nota);
-        Intent intent = new Intent(CrearNota.this, MainActivity.class);
-        intent.putExtra("estado", "Favoritas");
+        Intent intent = new Intent(CrearNota.this, MenuDesplegable.class);
+        intent.putExtra("estado", "TodasSinArchivadas");
         startActivity(intent);
     }
 
@@ -86,11 +83,11 @@ public class CrearNota extends AppCompatActivity {
             nota.setTipoNota("Normal");
             menuItemArchivados.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_folder_black_24dp));
         }else if (!textViewTitle.getText().equals("") && nota.getTipo_nota().equalsIgnoreCase("Favoritas")){
-            nota.setTipoNota("Archivada");
+            nota.setTipoNota("Archivadas");
             menuItemFavoritos.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_star_border_black_24dp));
             menuItemArchivados.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_folder_special_black_24dp));
         }else{
-            nota.setTipoNota("Archivada");
+            nota.setTipoNota("Archivadas");
             menuItemArchivados.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_folder_special_black_24dp));
         }
     }
@@ -120,8 +117,8 @@ public class CrearNota extends AppCompatActivity {
                 } else {
                     notaSingleton.updateNote(nota);
                 }
-                Intent intent = new Intent(CrearNota.this, MainActivity.class);
-                intent.putExtra("estado", "Favoritas");
+                Intent intent = new Intent(CrearNota.this, MenuDesplegable.class);
+                intent.putExtra("estado", "TodasSinArchivadas");
                 startActivity(intent);
             }
         });
@@ -141,12 +138,5 @@ public class CrearNota extends AppCompatActivity {
                 return true;
             }
         });
-
-
-
-
-
-
-
     }
 }

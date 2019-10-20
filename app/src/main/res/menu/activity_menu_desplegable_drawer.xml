@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/todas"
+            android:icon="@drawable/ic_view_headline_black_24dp"
+            android:title="Todas" />
+        <item
+            android:id="@+id/favoritas"
+            android:icon="@drawable/ic_star_black_24dp"
+            android:title="Favoritas" />
+        <item
+            android:id="@+id/archivadas"
+            android:icon="@drawable/ic_archive_black_24dp"
+            android:title="Archivadas" />
+    </group>
+
+</menu>
