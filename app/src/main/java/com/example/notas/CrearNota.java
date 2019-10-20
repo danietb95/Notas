@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -50,10 +51,15 @@ public class CrearNota extends AppCompatActivity {
                     notaSingleton.updateNote(nota);
                 }
                 Intent intent = new Intent(CrearNota.this, MainActivity.class);
-                intent.putExtra("estado", "TodasSinArchivadas");
+                intent.putExtra("estado", "Favorita");
                 startActivity(intent);
             }
         });
 
+    }
+
+    public void agregarAFavoritos(MenuItem item) {
+        nota.setTipo_nota("Favorita");
+        notaSingleton.updateNote(nota);
     }
 }
