@@ -3,6 +3,7 @@ package com.example.notas;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,9 @@ public class CrearNota extends AppCompatActivity {
     private Nota nota = new Nota();
     private NotaSingleton notaSingleton;
     private boolean esNueva = true;
+    private TextView textViewTitle;
+    private TextView textViewDescription;
+    private Button botonGuardar;
 
     private void getContext() {
         if (getIntent().hasExtra("Nota")) {
@@ -32,7 +36,39 @@ public class CrearNota extends AppCompatActivity {
     }
 
     public void agregarAFavoritos(MenuItem item) {
-        nota.setTipoNota("Favoritas");
+        MenuItem menuItemFavoritos = (MenuItem) findViewById(R.id.item_favoritos);
+        MenuItem menuItemArchivados = (MenuItem) findViewById(R.id.item_archivar);
+
+        if (!textViewTitle.getText().equals("") && nota.getTipo_nota().equalsIgnoreCase("Archivada")){
+            nota.setTipoNota("Favoritas");
+            menuItemFavoritos.setIcon(Drawable.createFromPath("@android:drawable/ic_star_black_24dp"));
+            menuItemArchivados.setIcon(Drawable.createFromPath("@android:drawable/ic_folder_open_black_24dp"));
+
+
+        }else if (!textViewTitle.getText().equals("") && nota.getTipo_nota().equalsIgnoreCase("Favoritas")){
+            nota.setTipoNota("Normal");
+            menuItemFavoritos.setIcon(Drawable.createFromPath("@android:drawable/ic_star_border_black_24dp"));
+        }else{
+            nota.setTipoNota("Favoritas");
+            menuItemFavoritos.setIcon(Drawable.createFromPath("@android:drawable/ic_star_black_24dp"));
+        }
+    }
+
+    public void agregarAArchivados(MenuItem item) {
+        MenuItem menuItemFavoritos = (MenuItem) findViewById(R.id.item_favoritos);
+        MenuItem menuItemArchivados = (MenuItem) findViewById(R.id.item_archivar);
+
+        if (!textViewTitle.getText().equals("") && nota.getTipo_nota().equalsIgnoreCase("Archivada")){
+            nota.setTipoNota("Normal");
+            menuItemArchivados.setIcon(Drawable.createFromPath("@android:drawable/ic_folder_open_black_24dp"));
+        }else if (!textViewTitle.getText().equals("") && nota.getTipo_nota().equalsIgnoreCase("Favoritas")){
+            nota.setTipoNota("Archivada");
+            menuItemFavoritos.setIcon(Drawable.createFromPath("@android:drawable/ic_star_border_black_24dp"));
+            menuItemArchivados.setIcon(Drawable.createFromPath("@android:drawable/ic_folder_special_black_24dp"));
+        }else{
+            nota.setTipoNota("Archivada");
+            menuItemFavoritos.setIcon(Drawable.createFromPath("@android:drawable/ic_star_black_24dp"));
+        }
     }
 
     @Override
@@ -40,9 +76,9 @@ public class CrearNota extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_nota);
         getContext();
-        TextView textViewTitle = (TextView) findViewById(R.id.titulo);
-        TextView textViewDescription = (TextView) findViewById(R.id.descripcion);
-        Button botonGuardar = (Button) findViewById(R.id.guardar);
+        textViewTitle = (TextView) findViewById(R.id.titulo);
+        textViewDescription = (TextView) findViewById(R.id.descripcion);
+        botonGuardar = (Button) findViewById(R.id.guardar);
         textViewTitle.setText(nota.getTitulo());
         textViewDescription.setText(nota.getDescripcion());
         notaSingleton = NotaSingleton.getNotaSingleton(this);
