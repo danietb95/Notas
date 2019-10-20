@@ -45,7 +45,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         TextView titleNote = holder.titleNote;
         titleNote.setText(nota.getTitulo());
         Button button = holder.messageButton;
-        button.setText("Ingresar");
+        button.setText("Abrir");
         button.setEnabled(true);
         button.setOnClickListener(
                 new View.OnClickListener() {

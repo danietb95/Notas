@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
 
     <item
-        android:id="@+id/item_id"
+        android:id="@+id/item_archivar"
         android:icon="@drawable/ic_folder_black_24dp"
-        android:onClick="agregarAArchivados"
         android:title="@string/archivar"
         android:visible="true" />
     <item
-        android:id="@+id/item_archivar"
+        android:id="@+id/item_eliminar"
         android:icon="@android:drawable/ic_menu_delete"
         android:onClick="eliminarNota"
         android:title="@string/eliminar" />
     <item
         android:id="@+id/item_favoritos"
         android:icon="@drawable/ic_star_border_black_24dp"
-        android:onClick="agregarAFavoritos"
         android:title="@string/favoritos" />
     <item
         android:id="@+id/item_recordatorios"

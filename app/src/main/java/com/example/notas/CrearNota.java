@@ -1,10 +1,15 @@
 package com.example.notas;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
+import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Switch;
 
 import com.example.notas.database.NotaSingleton;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class CrearNota extends AppCompatActivity {
     private Nota nota = new Nota();
@@ -20,11 +27,28 @@ public class CrearNota extends AppCompatActivity {
     private TextView textViewTitle;
     private TextView textViewDescription;
     private Button botonGuardar;
+    BottomNavigationItemView menuItemFavoritos;
+    BottomNavigationItemView menuItemArchivados;
 
+
+    @SuppressLint("RestrictedApi")
     private void getContext() {
         if (getIntent().hasExtra("Nota")) {
             nota = (Nota) getIntent().getSerializableExtra("Nota");
             esNueva = false;
+            menuItemFavoritos = (BottomNavigationItemView) findViewById(R.id.item_favoritos);
+            menuItemArchivados = (BottomNavigationItemView) findViewById(R.id.item_archivar);
+
+            switch(nota.getTipo_nota()){
+                case "Archivada":
+                    menuItemArchivados.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_folder_special_black_24dp));
+                    menuItemArchivados.setFocusable(true);
+                    break;
+                case "Favoritas":
+                    menuItemFavoritos.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_star_black_24dp));
+                    menuItemFavoritos.setFocusable(true);
+                    break;
+            }
         }
     }
 
@@ -35,39 +59,39 @@ public class CrearNota extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void agregarAFavoritos(MenuItem item) {
-        MenuItem menuItemFavoritos = (MenuItem) findViewById(R.id.item_favoritos);
-        MenuItem menuItemArchivados = (MenuItem) findViewById(R.id.item_archivar);
+    @SuppressLint("RestrictedApi")
+    public void agregarAFavoritos() {
+        menuItemFavoritos = (BottomNavigationItemView) findViewById(R.id.item_favoritos);
+        menuItemArchivados = (BottomNavigationItemView) findViewById(R.id.item_archivar);
 
         if (!textViewTitle.getText().equals("") && nota.getTipo_nota().equalsIgnoreCase("Archivada")){
             nota.setTipoNota("Favoritas");
-            menuItemFavoritos.setIcon(Drawable.createFromPath("@android:drawable/ic_star_black_24dp"));
-            menuItemArchivados.setIcon(Drawable.createFromPath("@android:drawable/ic_folder_open_black_24dp"));
-
-
+            menuItemFavoritos.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_star_black_24dp));
+            menuItemArchivados.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_folder_black_24dp));
         }else if (!textViewTitle.getText().equals("") && nota.getTipo_nota().equalsIgnoreCase("Favoritas")){
             nota.setTipoNota("Normal");
-            menuItemFavoritos.setIcon(Drawable.createFromPath("@android:drawable/ic_star_border_black_24dp"));
+            menuItemFavoritos.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_star_border_black_24dp));
         }else{
             nota.setTipoNota("Favoritas");
-            menuItemFavoritos.setIcon(Drawable.createFromPath("@android:drawable/ic_star_black_24dp"));
+            menuItemFavoritos.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_star_black_24dp));
         }
     }
 
-    public void agregarAArchivados(MenuItem item) {
-        MenuItem menuItemFavoritos = (MenuItem) findViewById(R.id.item_favoritos);
-        MenuItem menuItemArchivados = (MenuItem) findViewById(R.id.item_archivar);
+    @SuppressLint("RestrictedApi")
+    public void agregarAArchivados() {
+        menuItemFavoritos = (BottomNavigationItemView) findViewById(R.id.item_favoritos);
+        menuItemArchivados = (BottomNavigationItemView) findViewById(R.id.item_archivar);
 
         if (!textViewTitle.getText().equals("") && nota.getTipo_nota().equalsIgnoreCase("Archivada")){
             nota.setTipoNota("Normal");
-            menuItemArchivados.setIcon(Drawable.createFromPath("@android:drawable/ic_folder_open_black_24dp"));
+            menuItemArchivados.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_folder_black_24dp));
         }else if (!textViewTitle.getText().equals("") && nota.getTipo_nota().equalsIgnoreCase("Favoritas")){
             nota.setTipoNota("Archivada");
-            menuItemFavoritos.setIcon(Drawable.createFromPath("@android:drawable/ic_star_border_black_24dp"));
-            menuItemArchivados.setIcon(Drawable.createFromPath("@android:drawable/ic_folder_special_black_24dp"));
+            menuItemFavoritos.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_star_border_black_24dp));
+            menuItemArchivados.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_folder_special_black_24dp));
         }else{
             nota.setTipoNota("Archivada");
-            menuItemFavoritos.setIcon(Drawable.createFromPath("@android:drawable/ic_star_black_24dp"));
+            menuItemArchivados.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_folder_special_black_24dp));
         }
     }
 
@@ -97,10 +121,32 @@ public class CrearNota extends AppCompatActivity {
                     notaSingleton.updateNote(nota);
                 }
                 Intent intent = new Intent(CrearNota.this, MainActivity.class);
-                intent.putExtra("estado", "TodasSinArchivadas");
+                intent.putExtra("estado", "Favoritas");
                 startActivity(intent);
             }
         });
+
+        BottomNavigationView barraNavegacion = (BottomNavigationView) findViewById(R.id.bottom_nav);
+        barraNavegacion.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.item_archivar:
+                        agregarAArchivados();
+                        break;
+                    case R.id.item_favoritos:
+                        agregarAFavoritos();
+                        break;
+                }
+                return true;
+            }
+        });
+
+
+
+
+
+
 
     }
 }
