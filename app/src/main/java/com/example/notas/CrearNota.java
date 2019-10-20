@@ -51,7 +51,7 @@ public class CrearNota extends AppCompatActivity {
                     notaSingleton.updateNote(nota);
                 }
                 Intent intent = new Intent(CrearNota.this, MainActivity.class);
-                intent.putExtra("estado", "Favorita");
+                intent.putExtra("estado", "Favoritas");
                 startActivity(intent);
             }
         });
@@ -59,7 +59,6 @@ public class CrearNota extends AppCompatActivity {
     }
 
     public void agregarAFavoritos(MenuItem item) {
-        nota.setTipo_nota("Favorita");
-        notaSingleton.updateNote(nota);
+        nota.setTipo_nota("Favoritas");
     }
 }
