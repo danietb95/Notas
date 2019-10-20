@@ -2,6 +2,7 @@ package com.example.notas.database;
 
 import android.annotation.*;
 import android.content.*;
+
 import androidx.room.*;
 
 import com.example.notas.Nota;
@@ -31,35 +32,35 @@ public class NotaSingleton {
         return notaSingleton;
     }
 
-    public List<Nota> getAllNotes(){
+    public List<Nota> getAllNotes() {
         return notaDAO.getAll();
     }
 
-    public List<Nota> getAllNotesById(int[] notaIds){
+    public List<Nota> getAllNotesById(int[] notaIds) {
         return notaDAO.loadAllByIds(notaIds);
     }
 
-    public List<Nota> getAllReminder(boolean reminder ){
+    public List<Nota> getAllReminder(boolean reminder) {
         return notaDAO.loadAllReminder(reminder);
     }
 
-    public List<Nota> getAllTypeOfNote(String typeOfNote ){
+    public List<Nota> getAllTypeOfNote(String typeOfNote) {
         return notaDAO.loadAllTypeOfNote(typeOfNote);
     }
 
-    public List<Nota> getAllWithOutArchived(String typeOfNote ){
+    public List<Nota> getAllWithOutArchived(String typeOfNote) {
         return notaDAO.loadAllTypeWithOutArchived(typeOfNote);
     }
 
-    public void setNote(Nota nota ){
+    public void setNote(Nota nota) {
         notaDAO.insert(nota);
     }
 
-    public void deleteNote(Nota nota ){
-        notaDAO.insert(nota);
+    public void deleteNote(Nota nota) {
+        notaDAO.delete(nota);
     }
 
-    public void updateNote(Nota nota ){
+    public void updateNote(Nota nota) {
         notaDAO.update(nota);
     }
 }

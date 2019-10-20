@@ -3,11 +3,11 @@ package com.example.notas;
 import androidx.annotation.*;
 import androidx.room.*;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 @Entity(tableName = "nota")
-public class Nota {
-
+public class Nota implements Serializable {
 
     @NonNull
     @PrimaryKey
@@ -54,19 +54,36 @@ public class Nota {
         return recordatorio;
     }
 
-    public String getId() { return id; }
+    public String getId() {
+        return id;
+    }
 
-    public String getTipo_nota() { return tipo_nota; }
+    public String getTipoNota() {
+        return tipo_nota;
+    }
 
 
-    public void setTitulo(String titulo) { this.titulo = titulo; }
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
-    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-    public void setRecordatorio(boolean recordatorio) { this.recordatorio = recordatorio; }
+    public void setRecordatorio(boolean recordatorio) {
+        this.recordatorio = recordatorio;
+    }
 
-    public void setId(String id) { this.id = id; }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public void setTipo_nota(String tipo_nota) { this.tipo_nota = tipo_nota; }
+    public void setTipo_nota(String tipo_nota) {
+        this.tipo_nota = tipo_nota;
+    }
 
+    public String getTipo_nota() {
+        return tipo_nota;
+    }
 }

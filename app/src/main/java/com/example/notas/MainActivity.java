@@ -18,9 +18,6 @@ public class MainActivity extends AppCompatActivity {
     String estado;
     boolean recordatorio;
 
-    //Nota nota2 = new Nota("Nota 2", "descripcion 2");
-    //Nota nota3 = new Nota("Nota 3", "descripcion 3");
-
     private void getContext() {
         if (getIntent().hasExtra("estado")) {
             estado = getIntent().getStringExtra("estado");
@@ -38,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
                 default:
                     notas = (ArrayList) notaSingleton.getAllNotes();
             }
-        }
+        }else
+            notas = (ArrayList) notaSingleton.getAllNotes();
 
         if (getIntent().hasExtra("recordatorio")) {
             recordatorio = getIntent().getBooleanExtra("recordatorio", false);
