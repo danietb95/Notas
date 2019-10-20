@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Switch;
 
 import com.example.notas.database.NotaSingleton;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
@@ -104,12 +103,11 @@ public class CrearNota extends AppCompatActivity {
         botonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Switch testViewReminder = (Switch) findViewById(R.id.recordatorio);
                 TextView textViewTitle = (TextView) findViewById(R.id.titulo);
                 TextView textViewDescription = (TextView) findViewById(R.id.descripcion);
                 nota.setTitulo(textViewTitle.getText().toString());
                 nota.setDescripcion(textViewDescription.getText().toString());
-                nota.setRecordatorio(testViewReminder.isActivated());
+                nota.setRecordatorio(false);
                 if (esNueva) {
                     notaSingleton.setNote(nota);
                 } else {

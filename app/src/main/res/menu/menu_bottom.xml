@@ -5,14 +5,12 @@
     <item
         android:id="@+id/item_archivar"
         android:icon="@drawable/ic_folder_black_24dp"
-        android:title="@string/archivar"
-        android:visible="true" />
+        android:title="@string/archivar" />
     <item
         android:id="@+id/item_eliminar"
         android:icon="@android:drawable/ic_menu_delete"
         android:onClick="eliminarNota"
-        android:title="@string/eliminar"
-        />
+        android:title="@string/eliminar" />
     <item
         android:id="@+id/item_favoritos"
         android:icon="@drawable/ic_star_border_black_24dp"
