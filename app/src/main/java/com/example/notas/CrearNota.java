@@ -45,7 +45,7 @@ public class CrearNota extends AppCompatActivity {
         botonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Nota nota = new Nota("","",false);
+                Nota nota = new Nota("","",false, "");
                 Switch testViewReminder = (Switch) findViewById(R.id.recordatorio);
                 TextView textViewTitle = (TextView) findViewById(R.id.titulo);
                 TextView textViewDescription = (TextView) findViewById(R.id.descripcion);
@@ -53,10 +53,11 @@ public class CrearNota extends AppCompatActivity {
                 nota.setTitulo(textViewTitle.getText().toString());
                 nota.setDescripcion(textViewDescription.getText().toString());
                 nota.setRecordatorio(testViewReminder.isActivated());
+                nota.setTipo_nota("normal");
                 notaSingleton.setNote(nota);
 
                 Intent intent = new Intent(CrearNota.this, MainActivity.class);
-                intent.putExtra("estado", "dd");
+                intent.putExtra("estado", "TodasSinArchivadas");
                 startActivity(intent);
             }
         });

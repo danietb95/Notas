@@ -18,7 +18,8 @@ public class NotaSingleton {
     private NotaSingleton(Context context) {
 
         Context appContext = context.getApplicationContext();
-        DataBase database = Room.databaseBuilder(appContext, DataBase.class, "nota")
+        DataBase database = Room.databaseBuilder(appContext, DataBase.class, "nota.db")
+                .fallbackToDestructiveMigration()
                 .allowMainThreadQueries().build();
         notaDAO = database.getNotaDao();
     }

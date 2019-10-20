@@ -3,14 +3,16 @@ package com.example.notas;
 import androidx.annotation.*;
 import androidx.room.*;
 
+import java.util.UUID;
+
 @Entity(tableName = "nota")
 public class Nota {
 
 
-    //@NonNull
+    @NonNull
     @PrimaryKey
     @ColumnInfo(name = "id")
-    private int id;
+    private String id;
 
     @ColumnInfo(name = "titulo")
     private String titulo;
@@ -29,12 +31,15 @@ public class Nota {
         this.titulo = "";
         this.descripcion = "";
         this.recordatorio = false;
+        this.id = UUID.randomUUID().toString();
     }
 
-    public Nota(String titulo, String descripcion, boolean recordatorio) {
+    public Nota(String titulo, String descripcion, boolean recordatorio, String tipo_nota) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.recordatorio = recordatorio;
+        this.id = UUID.randomUUID().toString();
+        this.tipo_nota = tipo_nota;
     }
 
     public String getTitulo() {
@@ -49,7 +54,7 @@ public class Nota {
         return recordatorio;
     }
 
-    public int getId() { return id; }
+    public String getId() { return id; }
 
     public String getTipo_nota() { return tipo_nota; }
 
@@ -60,7 +65,7 @@ public class Nota {
 
     public void setRecordatorio(boolean recordatorio) { this.recordatorio = recordatorio; }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(String id) { this.id = id; }
 
     public void setTipo_nota(String tipo_nota) { this.tipo_nota = tipo_nota; }
 

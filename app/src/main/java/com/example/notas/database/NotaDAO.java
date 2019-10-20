@@ -28,7 +28,7 @@ public interface NotaDAO {
     Nota findByName(String first, String last);
 
     @Insert
-    void insert(com.example.notas.Nota nota);
+    void insert(Nota nota);
 
     @Delete
     void delete(Nota nota);

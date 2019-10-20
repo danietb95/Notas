@@ -18,8 +18,6 @@ public class MainActivity extends AppCompatActivity {
     String estado;
     boolean recordatorio;
 
-
-    Nota nota = new Nota("Nota 1", "descripcion 1", false);
     //Nota nota2 = new Nota("Nota 2", "descripcion 2");
     //Nota nota3 = new Nota("Nota 3", "descripcion 3");
 
@@ -54,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        notaSingleton = NotaSingleton.getNotaSingleton(this);
         getContext();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -62,6 +60,6 @@ public class MainActivity extends AppCompatActivity {
         NotesAdapter adapter = new NotesAdapter(notas);
         rvContacts.setAdapter(adapter);
         rvContacts.setLayoutManager(new LinearLayoutManager(this));
-        notaSingleton = NotaSingleton.getNotaSingleton(this);
+
     }
 }
