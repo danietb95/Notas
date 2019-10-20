@@ -59,7 +59,6 @@ public class Nota implements Serializable {
         return id;
     }
 
-
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }

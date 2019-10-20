@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.notas.database.NotaSingleton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.view.View;
 
@@ -30,7 +28,6 @@ import java.util.List;
 
 public class MenuDesplegable extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
 
     NotaSingleton notaSingleton;
     List<Nota> notas = new ArrayList<Nota>();
@@ -66,23 +63,11 @@ public class MenuDesplegable extends AppCompatActivity
         startActivity(new Intent(getApplicationContext(), CrearNota.class));
     }
 
-
-
-    ///////////////////////////////////
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         notaSingleton = NotaSingleton.getNotaSingleton(this);
         getContext();
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-        /*RecyclerView rvContacts = (RecyclerView) findViewById(R.id.rvNotes);
-        NotesAdapter adapter = new NotesAdapter(notas);
-        rvContacts.setAdapter(adapter);
-        rvContacts.setLayoutManager(new LinearLayoutManager(this));
-        */
-
-
         setContentView(R.layout.activity_menu_desplegable);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -112,19 +97,13 @@ public class MenuDesplegable extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_desplegable, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -135,12 +114,12 @@ public class MenuDesplegable extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+
         int id = item.getItemId();
 
         if (id == R.id.todas) {
             Intent intent = new Intent(this, MenuDesplegable.class);
-            intent.putExtra("estado", "TodasSinArchivadas");
+            intent.putExtra("estado", "Todas");
             startActivity(intent);
         } else if (id == R.id.favoritas) {
             Intent intent = new Intent(this, MenuDesplegable.class);

@@ -29,7 +29,7 @@
         android:layout_marginTop="46dp"
         android:layout_marginEnd="94dp"
         android:textSize="25dp"
-        android:text="Crear nueva nota"
+        android:text="Nota"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -42,7 +42,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="39dp"
         android:ems="10"
-        android:hint="Nota"
+        android:hint="Descripción de nota"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

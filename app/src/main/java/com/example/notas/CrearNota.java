@@ -1,6 +1,5 @@
 package com.example.notas;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -15,7 +14,6 @@ import android.widget.Switch;
 
 import com.example.notas.database.NotaSingleton;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class CrearNota extends AppCompatActivity {
     private Nota nota = new Nota();
@@ -36,8 +34,8 @@ public class CrearNota extends AppCompatActivity {
             menuItemFavoritos = (BottomNavigationItemView) findViewById(R.id.item_favoritos);
             menuItemArchivados = (BottomNavigationItemView) findViewById(R.id.item_archivar);
 
-            switch(nota.getTipo_nota()){
-                case "Archivada":
+            switch (nota.getTipo_nota()) {
+                case "Archivadas":
                     menuItemArchivados.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_folder_special_black_24dp));
                     menuItemArchivados.setFocusable(true);
                     break;
@@ -61,14 +59,14 @@ public class CrearNota extends AppCompatActivity {
         menuItemFavoritos = (BottomNavigationItemView) findViewById(R.id.item_favoritos);
         menuItemArchivados = (BottomNavigationItemView) findViewById(R.id.item_archivar);
 
-        if (!textViewTitle.getText().equals("") && nota.getTipo_nota().equalsIgnoreCase("Archivada")){
+        if (!textViewTitle.getText().equals("") && nota.getTipo_nota().equalsIgnoreCase("Archivadas")) {
             nota.setTipoNota("Favoritas");
             menuItemFavoritos.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_star_black_24dp));
             menuItemArchivados.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_folder_black_24dp));
-        }else if (!textViewTitle.getText().equals("") && nota.getTipo_nota().equalsIgnoreCase("Favoritas")){
+        } else if (!textViewTitle.getText().equals("") && nota.getTipo_nota().equalsIgnoreCase("Favoritas")) {
             nota.setTipoNota("Normal");
             menuItemFavoritos.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_star_border_black_24dp));
-        }else{
+        } else {
             nota.setTipoNota("Favoritas");
             menuItemFavoritos.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_star_black_24dp));
         }
@@ -79,14 +77,14 @@ public class CrearNota extends AppCompatActivity {
         menuItemFavoritos = (BottomNavigationItemView) findViewById(R.id.item_favoritos);
         menuItemArchivados = (BottomNavigationItemView) findViewById(R.id.item_archivar);
 
-        if (!textViewTitle.getText().equals("") && nota.getTipo_nota().equalsIgnoreCase("Archivada")){
+        if (!textViewTitle.getText().equals("") && nota.getTipo_nota().equalsIgnoreCase("Archivadas")) {
             nota.setTipoNota("Normal");
             menuItemArchivados.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_folder_black_24dp));
-        }else if (!textViewTitle.getText().equals("") && nota.getTipo_nota().equalsIgnoreCase("Favoritas")){
+        } else if (!textViewTitle.getText().equals("") && nota.getTipo_nota().equalsIgnoreCase("Favoritas")) {
             nota.setTipoNota("Archivadas");
             menuItemFavoritos.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_star_border_black_24dp));
             menuItemArchivados.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_folder_special_black_24dp));
-        }else{
+        } else {
             nota.setTipoNota("Archivadas");
             menuItemArchivados.setIcon(ContextCompat.getDrawable(CrearNota.this, R.drawable.ic_folder_special_black_24dp));
         }
@@ -123,19 +121,21 @@ public class CrearNota extends AppCompatActivity {
             }
         });
 
-        BottomNavigationView barraNavegacion = (BottomNavigationView) findViewById(R.id.bottom_nav);
-        barraNavegacion.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        menuItemFavoritos = (BottomNavigationItemView) findViewById(R.id.item_favoritos);
+        menuItemFavoritos.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.item_archivar:
-                        agregarAArchivados();
-                        break;
-                    case R.id.item_favoritos:
-                        agregarAFavoritos();
-                        break;
-                }
-                return true;
+            public void onClick(View view) {
+                agregarAFavoritos();
+            }
+        });
+
+        menuItemArchivados = (BottomNavigationItemView) findViewById(R.id.item_archivar);
+        menuItemArchivados.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onClick(View view) {
+                agregarAArchivados();
             }
         });
     }
