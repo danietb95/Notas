@@ -8,33 +8,53 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.notas.database.NotaSingleton;
+
+import java.util.*;
 
 public class MainActivity extends AppCompatActivity {
-    ArrayList<Nota> notas = new ArrayList<Nota>();
+    NotaSingleton notaSingleton;
+    List<Nota> notas = new ArrayList<Nota>();
+    String estado;
+    boolean recordatorio;
+
+
     Nota nota = new Nota("Nota 1", "descripcion 1");
-    Nota nota2 = new Nota("Nota 2", "descripcion 2");
-    Nota nota3 = new Nota("Nota 3", "descripcion 3");
+    //Nota nota2 = new Nota("Nota 2", "descripcion 2");
+    //Nota nota3 = new Nota("Nota 3", "descripcion 3");
 
     private void getContext() {
         if (getIntent().hasExtra("estado")) {
-            String estado = getIntent().getStringExtra("estado");
-            //realizar consulta a base de datos con el estado seleccionado
-            notas.add(nota);
-            notas.add(nota2);
-        } else {
-            notas.add(nota3);
-            //retornar todas las notas menos las archivadas
+            estado = getIntent().getStringExtra("estado");
+
+            switch (estado) {
+                case "Archivada":
+                    notas = (ArrayList) notaSingleton.getAllTypeOfNote("Archivadas");
+                    break;
+                case "Favorita":
+                    notas = (ArrayList) notaSingleton.getAllTypeOfNote("Favoritas");
+                    break;
+                case "TodasSinArchivadas":
+                    notas = (ArrayList) notaSingleton.getAllWithOutArchived("Favoritas");
+                    break;
+                default:
+                    notas = (ArrayList) notaSingleton.getAllNotes();
+            }
         }
+
+        if (getIntent().hasExtra("recordatorio")) {
+            recordatorio = getIntent().getBooleanExtra("recordatorio", false);
+                notas = (ArrayList) notaSingleton.getAllReminder(recordatorio);
+            }
     }
 
     public void nuevaNota(View view){
-        startActivity(new Intent(getApplicationContext(), CrearNota.class));
-    }
+            startActivity(new Intent(getApplicationContext(), CrearNota.class));
+        }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         getContext();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -42,5 +62,6 @@ public class MainActivity extends AppCompatActivity {
         NotesAdapter adapter = new NotesAdapter(notas);
         rvContacts.setAdapter(adapter);
         rvContacts.setLayoutManager(new LinearLayoutManager(this));
+        notaSingleton = NotaSingleton.getNotaSingleton(this);
     }
 }

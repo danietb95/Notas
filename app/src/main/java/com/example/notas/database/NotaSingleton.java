@@ -4,6 +4,8 @@ import android.annotation.*;
 import android.content.*;
 import androidx.room.*;
 
+import com.example.notas.Nota;
+
 import java.util.List;
 
 public class NotaSingleton {
@@ -40,8 +42,12 @@ public class NotaSingleton {
         return notaDAO.loadAllReminder(reminder);
     }
 
-    public List<Nota> getAllReminder(String typeOfNote ){
+    public List<Nota> getAllTypeOfNote(String typeOfNote ){
         return notaDAO.loadAllTypeOfNote(typeOfNote);
+    }
+
+    public List<Nota> getAllWithOutArchived(String typeOfNote ){
+        return notaDAO.loadAllTypeWithOutArchived(typeOfNote);
     }
 
     public void setNote(Nota nota ){

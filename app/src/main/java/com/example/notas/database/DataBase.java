@@ -2,7 +2,7 @@ package com.example.notas.database;
 
 import androidx.room.*;
 
-@Database(entities = {Nota.class}, version = 1)
+@Database(entities = {Nota_DB.class}, version = 1)
 public abstract class DataBase extends RoomDatabase{
 
     public abstract NotaDAO getNotaDao();
