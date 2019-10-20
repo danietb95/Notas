@@ -45,7 +45,7 @@ public class CrearNota extends AppCompatActivity {
         botonGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Nota nota = new Nota();
+                Nota nota = new Nota("","",false);
                 Switch testViewReminder = (Switch) findViewById(R.id.recordatorio);
                 TextView textViewTitle = (TextView) findViewById(R.id.titulo);
                 TextView textViewDescription = (TextView) findViewById(R.id.descripcion);

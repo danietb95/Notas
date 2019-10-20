@@ -5,8 +5,11 @@ import androidx.room.*;
 
 @Entity(tableName = "nota")
 public class Nota {
+
+
+    //@NonNull
     @PrimaryKey
-    @NonNull
+    @ColumnInfo(name = "id")
     private int id;
 
     @ColumnInfo(name = "titulo")
@@ -21,14 +24,11 @@ public class Nota {
     @ColumnInfo(name = "recordatorio")
     private boolean recordatorio;
 
+    @Ignore
     public Nota() {
         this.titulo = "";
         this.descripcion = "";
-    }
-
-    public Nota(String titulo, String descripcion) {
-        this.titulo = titulo;
-        this.descripcion = descripcion;
+        this.recordatorio = false;
     }
 
     public Nota(String titulo, String descripcion, boolean recordatorio) {
@@ -64,5 +64,4 @@ public class Nota {
 
     public void setTipo_nota(String tipo_nota) { this.tipo_nota = tipo_nota; }
 
-    public boolean isRecordatorio() { return recordatorio; }
 }

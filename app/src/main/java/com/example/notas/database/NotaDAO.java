@@ -6,6 +6,7 @@ import com.example.notas.Nota;
 
 import java.util.List;
 
+@Dao
 public interface NotaDAO {
     @Query("SELECT * FROM Nota")
     List<Nota> getAll();

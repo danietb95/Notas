@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     boolean recordatorio;
 
 
-    Nota nota = new Nota("Nota 1", "descripcion 1");
+    Nota nota = new Nota("Nota 1", "descripcion 1", false);
     //Nota nota2 = new Nota("Nota 2", "descripcion 2");
     //Nota nota3 = new Nota("Nota 3", "descripcion 3");
 

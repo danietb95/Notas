@@ -52,7 +52,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
                         Intent intent = new Intent(context, CrearNota.class);
                         intent.putExtra("titulo", nota.getTitulo());
                         intent.putExtra("descripcion", nota.getDescripcion());
-                        intent.putExtra("recordatorio", nota.getReoordatorio());
+                        intent.putExtra("recordatorio", nota.getRecordatorio());
                         context.startActivity(intent);
                     }
                 }
