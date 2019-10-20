@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,6 +22,13 @@ public class CrearNota extends AppCompatActivity {
             nota = (Nota) getIntent().getSerializableExtra("Nota");
             esNueva = false;
         }
+    }
+
+    public void eliminarNota(MenuItem item) {
+        notaSingleton.deleteNote(nota);
+        Intent intent = new Intent(CrearNota.this, MainActivity.class);
+        intent.putExtra("estado", "TodasSinArchivadas");
+        startActivity(intent);
     }
 
     @Override
