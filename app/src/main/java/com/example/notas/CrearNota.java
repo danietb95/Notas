@@ -1,14 +1,15 @@
 package com.example.notas;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Switch;
 import com.example.notas.database.NotaSingleton;
 
 public class CrearNota extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class CrearNota extends AppCompatActivity {
 
     private void getContext() {
         if (getIntent().hasExtra("titulo")) {
+            titulo = getIntent().getStringExtra("titulo");
             descripcion = getIntent().getStringExtra("descripcion");
         }
         if (getIntent().hasExtra("descripcion")) {
@@ -36,24 +38,28 @@ public class CrearNota extends AppCompatActivity {
         getContext();
         TextView textViewTitle = (TextView) findViewById(R.id.titulo);
         TextView textViewDescription = (TextView) findViewById(R.id.descripcion);
+        Button botonGuardar = (Button)findViewById(R.id.guardar);
         textViewTitle.setText(titulo);
         textViewDescription.setText(descripcion);
         notaSingleton = NotaSingleton.getNotaSingleton(this);
-    }
+        botonGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Nota nota = new Nota();
+                Switch testViewReminder = (Switch) findViewById(R.id.recordatorio);
+                TextView textViewTitle = (TextView) findViewById(R.id.titulo);
+                TextView textViewDescription = (TextView) findViewById(R.id.descripcion);
 
-    public void crearNota(){
-        Nota nota = new Nota();
-        EditText titulo = (EditText) findViewById(R.id.titulo);
-        EditText descripcion = (EditText) findViewById(R.id.descripcion);
-        Switch recordatorio = (Switch) findViewById(R.id.recordatorio);
+                nota.setTitulo(textViewTitle.getText().toString());
+                nota.setDescripcion(textViewDescription.getText().toString());
+                nota.setRecordatorio(testViewReminder.isActivated());
+                notaSingleton.setNote(nota);
 
-        nota.setTitulo(titulo.getText().toString());
-        nota.setDescripcion(descripcion.getText().toString());
-        nota.setRecordatorio(recordatorio.isActivated());
+                Intent intent = new Intent(CrearNota.this, MainActivity.class);
+                intent.putExtra("estado", "dd");
+                startActivity(intent);
+            }
+        });
 
-        notaSingleton.setNote(nota);
-
-
-        //startActivity(new Intent(getApplicationContext(), CrearNota.class));
     }
 }
