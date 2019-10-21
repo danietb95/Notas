@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="" />
+    <item
+        android:id="@+id/item_archivar"
+        android:icon="@drawable/ic_folder_black_24dp"
+        android:title="@string/archivar" />
+    <item
+        android:id="@+id/item_eliminar"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:onClick="eliminarNota"
+        android:title="@string/eliminar" />
+    <item
+        android:id="@+id/item_favoritos"
+        android:icon="@drawable/ic_star_border_black_24dp"
+        android:title="@string/favoritos" />
+    <item android:title="" />
+</menu>
